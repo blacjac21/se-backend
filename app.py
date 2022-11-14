@@ -9,13 +9,8 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Route for seeing a data
-@app.route('/dec', methods=['GET'])
-def declaration():
-    args = request.args
-    k = args.get("foldername")
-    down(k)
-    i = getDecDeets(k)
-    return i
+@app.route('/allclub', methods=['GET'])
+
 
 @app.route('/misc', methods=['GET'])
 def key():
