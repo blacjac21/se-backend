@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home | PESANTRY</title>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="/static/Logo1.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1 align="center"> Fred flintstone stole {{head}}</h1>
+  {% for i in data %}
+  <h2 align="center">
+    <span>{{i.name}}</span> 
+    <span>{{i.srn}}</span>
+  </h2>
+  {% endfor %}
+</body>
+</html>
