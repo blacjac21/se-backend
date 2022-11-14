@@ -1,24 +1,20 @@
-from flask import Flask, request,jsonify
+from flask import Flask
 from flask_cors import CORS, cross_origin
 import json
 
+# LOCAL IMPORTS
+from application.config import Config
+from application.database import db
+from application.models import *
+
 # Initializing flask app
 app = Flask(__name__)
-  
+app.config.from_object(Config)
+
+# Setting up cross origin resource sharing
 cors = CORS(app)  
 app.config['CORS_HEADERS'] = 'Content-Type'
-
-# Route for seeing a data
-@app.route('/allclub', methods=['GET'])
-
-
-@app.route('/misc', methods=['GET'])
-def key():
-    args = request.args
-    k = args.get("filename")
-    i = show(k)
-    return i
       
-# Running app
+# Running
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=8080)
