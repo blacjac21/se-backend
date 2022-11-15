@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  title: Communiti API 
+  description: |-
+    This is the documentation for the very basic communiti server. Flask-Restful powers this REST API and this documentation is written on Swagger.
+    
+    Some useful links:
+    - [The github repo for the backend ](https://github.com/blacjac21/se-backend)
+
+
+  contact:
+    email: swapnilnair747@gmail.com
+  license:
+    name: Unlicense
+    url: https://unlicense.org/
+  version: 1.0.5
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://10.20.201.44
+tags:
+  - name: clubs
+    description: All the clubs, all the data.
+    externalDocs:
+      description: Club related
+      url: http://swagger.io
+  - name: students
+    description: All the students,all the data
+    externalDocs:
+      description: Student related
+      url: http://swagger.io
+  - name: announcements
+    description: all the announcements
+paths:
+  /clubs:
+    get:
+      tags:
+        - clubs
+      summary: Get all the clubs listed in the database
+      description: Literally just that. Do I have to describe it any more ?
+      operationId: fetchclubs
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clubs'          
+
+    post:
+      tags:
+        - clubs
+      summary: Add a new club 
+      description: Add a new club, authentication necessary
+      operationId: addclub
+      requestBody:
+        description: Create a new club using the API
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Clubs'
+         
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clubs'          
+          
+        '405':
+          description: Invalid input
+      
+  /students:
+    get:
+      tags:
+        - students
+      summary: Get all the students listed in the database
+      description: Used internally, no open api call 
+      operationId: fetchstudents
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'          
+
+    post:
+        tags:
+          - students
+        summary: Add or update a student
+        description: Add or update a student's details in the database based on existence
+        operationId: addupdatestudent
+        requestBody:
+          description: Add or update a student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+
+          required: true
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Student'          
+          '405':
+            description: Invalid input
+
+  /announcements:
+    get:
+      tags:
+        - announcements
+      summary: Get all the announcements
+      description: Fetch all the assignments currently posted
+      operationId: fetchassignments
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Announcement'  
+                
+components:
+  schemas:
+    
+    Clubs:
+      type: object
+      properties:
+        name:
+          type: string
+          example: QQC
+        description:
+          type: string
+          example: We are the Quotient Quiz Club
+        logo:
+          type: string
+          example: <QQC LOGO>
+        tags:
+          type: string
+          example: quizzing,literature
+        club_id:
+          type: integer
+          example: 1
+        images:
+          type: string
+          example: <img1><img2><img3>
+        social_links:
+          type: string
+          example: "@qqc.pes"
+          
+    Student:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Swapnil
+        srn:
+          type: string
+          example: PES1UG20CS452
+        branch:
+          type: string
+          example: CSE
+        email_id:
+          type: string
+          example: swapnilnair747@gmail.com
+        roles:
+          type: string
+          example: admin,user
+          
+          
+    Announcement:
+      type: object
+      properties:
+        announcement_id:
+          type: integer
+          example: 001
+        club_id:
+          type: integer
+          example: 13
+        description:
+          type: string
+          example: The Formula 1 Quiz , in association with ESPN
+        url:
+          type: string
+          example: www.qqc.pes.edu/register
+        image:
+          type: string
+          example: www.googlecdn/102232u8
+        
+

@@ -7,7 +7,6 @@ class Club(db.Model):
     __tablename__ = 'Club'
     name: str
     description: str
-    description:str
     logo:str
     tags:str
     club_id:int

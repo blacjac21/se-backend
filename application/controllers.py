@@ -36,7 +36,6 @@ class Square(Resource):
     def get(self, num):
         return jsonify({'square': num**2})
   
-
 class Clubs(Resource):
     def get(self):
         k = Club.query.all()
@@ -44,12 +43,11 @@ class Clubs(Resource):
         for i in k:
             print(row2dict(i))
         return jsonify(k)
-
-class Clubs1(Resource):
     def post(self):
         data = request.get_json()
         print(data)
         return jsonify({'data':data})
+
 
 class Students(Resource):
     def get(self):
@@ -65,6 +63,7 @@ class Students(Resource):
         print(data)
         return jsonify({'Student data updated with':data})
 
+
 class Announcements(Resource):
     def get(self):
         k = Announcement.query.all()
@@ -77,5 +76,4 @@ api.add_resource(Square, '/square/<int:num>')
 api.add_resource(Clubs,'/clubs')
 api.add_resource(Students,'/students')
 api.add_resource(Announcements,'/announcements')
-api.add_resource(Clubs1,'/clubadd')
 
