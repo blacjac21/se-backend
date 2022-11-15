@@ -39,28 +39,28 @@ class Square(Resource):
 class Clubs(Resource):
     def get(self):
         k = Club.query.all()
-        print(k)
-        for i in k:
-            print(row2dict(i))
+        #print(k)
+        #for i in k:
+        #    print(row2dict(i))
         return jsonify(k)
     def post(self):
         data = request.get_json()
-        print(data)
+        #print(data)
         return jsonify({'data':data})
 
 
 class Students(Resource):
     def get(self):
         k = Student.query.all()
-        print(k)
-        for i in k:
+        #print(k)
+        #for i in k:
             #print(i.__dict__)
-            print(row2dict(i))
+            #print(row2dict(i))
         return jsonify(k)
 
     def post(self):
         data = request.get_json()
-        print(data)
+        #print(data)
         return jsonify({'Student data updated with':data})
 
 
