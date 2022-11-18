@@ -43,11 +43,11 @@ class Clubs(Resource):
         #for i in k:
         #    print(row2dict(i))
         return jsonify(k)
+
     def post(self):
         data = request.get_json()
-        #print(data)
+        Club.create(club_id = data['club_id'],description=data['description'],logo=data['logo'],tags=data['tags'],name=data['name'],images=data['images'],social_links=data['social_links'])
         return jsonify({'data':data})
-
 
 class Students(Resource):
     def get(self):
@@ -67,10 +67,17 @@ class Students(Resource):
 class Announcements(Resource):
     def get(self):
         k = Announcement.query.all()
-        print(k)
-        for i in k:
-            print(row2dict(i))
+        #print(k)
+        #for i in k:
+        #   print(row2dict(i))
         return jsonify(k)
+
+    def post(self):
+        data = request.get_json()
+        cid = Club.query.filter_by(name = data['club_name']).first()
+        #print("cid",cid.club_id)
+        Announcement.create(announcement_name= data['announcement_name'],club_id=cid.club_id,club_name=data['club_name'],description=data['description'],image=data['image'],url=data['url'])
+        return jsonify({'Announcement created with':data})
 
 api.add_resource(Square, '/square/<int:num>')
 api.add_resource(Clubs,'/clubs')

@@ -24,4 +24,4 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 from application.controllers import *
 # Running
 if __name__ == '__main__':
-    app.run(host='10.20.201.44',port=8080)
+    app.run(host='10.20.205.97',port=8080)
